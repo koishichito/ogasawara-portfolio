@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小笠原啓祐 ― テクノロジーパートナー</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --fg:#32373c;
+      --fg-light:#6b7280;
+      --fg-muted:#9ca3af;
+      --bg:#fff;
+      --bg-alt:#f7f7f7;
+      --border:#e8e8e8;
+      --max-w:920px;
+    }
+    html{font-size:16px;scroll-behavior:smooth}
+    body{
+      font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+      color:var(--fg);background:var(--bg);
+      line-height:2;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* ===== Header / Nav ===== */
+    .header{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      background:rgba(255,255,255,.96);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid transparent;
+      transition:border-color .3s;
+    }
+    .header.scrolled{border-bottom-color:var(--border)}
+    .header-inner{
+      max-width:var(--max-w);margin:0 auto;
+      padding:0 32px;height:72px;
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .logo{
+      font-family:"Inter","Noto Sans JP",sans-serif;
+      font-size:.8rem;font-weight:600;color:var(--fg);
+      text-decoration:none;letter-spacing:.08em;
+    }
+    .nav-list{list-style:none;display:flex;align-items:center;gap:32px}
+    .nav-list a{
+      font-size:.72rem;color:var(--fg-light);text-decoration:none;
+      letter-spacing:.1em;font-weight:500;transition:color .3s;
+    }
+    .nav-list a:hover{color:var(--fg)}
+    .nav-contact a{
+      color:var(--fg);font-weight:600;
+      padding:8px 24px;border:1px solid var(--fg);border-radius:4px;
+      transition:all .3s;
+    }
+    .nav-contact a:hover{background:var(--fg);color:#fff}
+
+    /* ===== Hero ===== */
+    .hero{
+      min-height:100vh;display:flex;align-items:center;
+      padding:120px 32px 80px;
+      max-width:var(--max-w);margin:0 auto;
+    }
+    .hero-inner{max-width:600px}
+    .hero-en{
+      font-family:"Inter",sans-serif;
+      font-size:.65rem;font-weight:500;letter-spacing:.2em;
+      color:var(--fg-muted);margin-bottom:32px;
+      text-transform:uppercase;
+    }
+    .hero h1{
+      font-size:1.8rem;font-weight:700;line-height:1.9;
+      margin-bottom:24px;letter-spacing:.04em;
+    }
+    .hero-desc{
+      font-size:.88rem;color:var(--fg-light);line-height:2.2;
+      margin-bottom:48px;
+    }
+    .hero-cta{
+      display:inline-block;font-size:.78rem;color:var(--fg);
+      text-decoration:none;letter-spacing:.08em;font-weight:500;
+      padding-bottom:4px;border-bottom:1px solid var(--fg);
+      transition:opacity .3s;
+    }
+    .hero-cta:hover{opacity:.6}
+
+    /* ===== Section common ===== */
+    .section{
+      max-width:var(--max-w);margin:0 auto;
+      padding:100px 32px;
+    }
+    .section-full{
+      padding:100px 0;
+    }
+    .section-full-inner{
+      max-width:var(--max-w);margin:0 auto;padding:0 32px;
+    }
+    .section-en{
+      font-family:"Inter",sans-serif;
+      font-size:.6rem;font-weight:600;letter-spacing:.22em;
+      color:var(--fg-muted);margin-bottom:8px;text-transform:uppercase;
+    }
+    .section-title{
+      font-size:1.1rem;font-weight:700;margin-bottom:48px;
+      letter-spacing:.04em;line-height:1.8;
+    }
+    .section-line{
+      width:32px;height:1px;background:var(--fg);margin-bottom:32px;
+    }
+
+    /* ===== Concept / About ===== */
+    .concept{background:var(--bg-alt)}
+    .concept-text{
+      font-size:.9rem;color:var(--fg);line-height:2.4;
+      max-width:600px;
+    }
+    .concept-text + .concept-text{margin-top:24px}
+
+    /* ===== Services ===== */
+    .services-list{
+      display:grid;gap:0;
+      border-top:1px solid var(--border);
+    }
+    .service-item{
+      display:grid;grid-template-columns:200px 1fr;gap:32px;
+      padding:40px 0;
+      border-bottom:1px solid var(--border);
+      align-items:start;
+    }
+    .service-item h3{
+      font-size:.88rem;font-weight:700;letter-spacing:.02em;
+    }
+    .service-item p{
+      font-size:.84rem;color:var(--fg-light);line-height:2;
+    }
+
+    /* ===== Achievements ===== */
+    .achievements{background:var(--bg-alt)}
+    .ach-list{display:grid;gap:0;border-top:1px solid var(--border)}
+    .ach-item{
+      padding:32px 0;
+      border-bottom:1px solid var(--border);
+      display:grid;grid-template-columns:120px 1fr;gap:24px;
+      align-items:baseline;
+    }
+    .ach-tag{
+      font-family:"Inter",sans-serif;
+      font-size:.68rem;font-weight:600;color:var(--fg-muted);
+      letter-spacing:.06em;
+    }
+    .ach-name{font-size:.88rem;font-weight:500;line-height:1.8}
+    .ach-sub{font-size:.76rem;color:var(--fg-light);margin-top:4px}
+
+    /* ===== Strengths ===== */
+    .strengths-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:48px;
+    }
+    .strength-item{}
+    .strength-num{
+      font-family:"Inter",sans-serif;
+      font-size:.6rem;font-weight:600;color:var(--fg-muted);
+      letter-spacing:.1em;margin-bottom:16px;
+    }
+    .strength-item h4{
+      font-size:.88rem;font-weight:700;margin-bottom:12px;
+      letter-spacing:.02em;
+    }
+    .strength-item p{
+      font-size:.8rem;color:var(--fg-light);line-height:2;
+    }
+
+    /* ===== Personal ===== */
+    .personal{background:var(--bg-alt)}
+    .personal-inner{
+      display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;
+    }
+    .personal-text{
+      font-size:.86rem;color:var(--fg);line-height:2.2;
+    }
+    .personal-aside{
+      font-size:.82rem;color:var(--fg-light);line-height:2.2;
+      padding:32px;background:var(--bg);border-radius:4px;
+    }
+    .personal-img{
+      display:flex;align-items:center;justify-content:center;
+    }
+    .personal-img img{
+      max-width:280px;width:100%;height:auto;
+      filter:drop-shadow(0 8px 24px rgba(0,0,0,.10));
+      transition:transform .4s ease;
+    }
+    .personal-img img:hover{transform:scale(1.03) rotate(-1deg)}
+
+    /* ===== Contact ===== */
+    .contact-inner{
+      text-align:center;max-width:520px;margin:0 auto;
+    }
+    .contact-desc{
+      font-size:.86rem;color:var(--fg-light);line-height:2.2;
+      margin-bottom:48px;
+    }
+    .contact-email{
+      display:inline-block;font-size:.9rem;color:var(--fg);
+      text-decoration:none;font-weight:500;letter-spacing:.04em;
+      padding:16px 48px;border:1px solid var(--fg);border-radius:4px;
+      transition:all .3s;
+    }
+    .contact-email:hover{background:var(--fg);color:#fff}
+    .contact-links{
+      margin-top:32px;list-style:none;
+      display:flex;justify-content:center;gap:32px;
+    }
+    .contact-links a{
+      font-size:.76rem;color:var(--fg-muted);text-decoration:none;
+      letter-spacing:.06em;transition:color .3s;
+    }
+    .contact-links a:hover{color:var(--fg)}
+
+    /* ===== Footer ===== */
+    footer{
+      text-align:center;padding:48px 32px;
+      font-size:.68rem;color:var(--fg-muted);letter-spacing:.06em;
+    }
+
+    /* ===== Fade animation ===== */
+    .fade{
+      opacity:0;transform:translateY(16px);
+      transition:opacity .8s ease,transform .8s ease;
+    }
+    .fade.show{opacity:1;transform:translateY(0)}
+
+    /* ===== Responsive ===== */
+    @media(max-width:768px){
+      .header-inner{padding:0 20px;height:60px}
+      .nav-list{gap:20px}
+      .hero{padding:100px 20px 60px;min-height:auto}
+      .hero h1{font-size:1.4rem}
+      .section{padding:72px 20px}
+      .section-full-inner{padding:0 20px}
+      .service-item{grid-template-columns:1fr;gap:8px}
+      .ach-item{grid-template-columns:1fr;gap:4px}
+      .strengths-grid{grid-template-columns:1fr;gap:32px}
+      .personal-inner{grid-template-columns:1fr;gap:32px}
+    }
+    @media(max-width:480px){
+      .hero h1{font-size:1.2rem}
+      .nav-list{display:none}
+      .logo{font-size:.75rem}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="#" class="logo">KEISUKE OGASAWARA</a>
+      <ul class="nav-list">
+        <li><a href="#service">SERVICE</a></li>
+        <li><a href="#works">WORKS</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li class="nav-contact"><a href="#contact">CONTACT</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-en">Technology Partner</div>
+      <h1>テクノロジーの力で、<br>あなたの事業を支える。</h1>
+      <p class="hero-desc">
+        投資家・医師・実業家の方々へ。<br>
+        システム開発からAI活用まで、<br>
+        難しいことは全てお任せください。
+      </p>
+      <a href="#contact" class="hero-cta">お問い合わせはこちら &#8594;</a>
+    </div>
+  </section>
+
+  <!-- Concept -->
+  <div class="section-full concept" id="about">
+    <div class="section-full-inner">
+      <div class="section" style="padding-left:0;padding-right:0">
+        <div class="section-en fade">CONCEPT</div>
+        <div class="section-line fade"></div>
+        <h2 class="section-title fade">お客様の大切な事業を理解し、<br>本当に必要な技術を届ける。</h2>
+        <p class="concept-text fade">
+          はじめまして、小笠原啓祐です。
+        </p>
+        <p class="concept-text fade">
+          「こういう仕組みが欲しいけれど、誰に頼めばいいか分からない」<br>
+          「AIが便利らしいけれど、自分の仕事にどう活かせるのか」
+        </p>
+        <p class="concept-text fade">
+          そんなお声に応えるために活動しています。<br>
+          難しい専門用語は使いません。お客様の事業を丁寧に理解したうえで、<br>
+          分かりやすいご提案から制作・運用までを一貫してサポートいたします。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <section class="section" id="service">
+    <div class="section-en fade">SERVICE</div>
+    <div class="section-line fade"></div>
+    <h2 class="section-title fade">提供サービス</h2>
+    <div class="services-list">
+      <div class="service-item fade">
+        <h3>システム・HP制作</h3>
+        <p>ホームページや業務システムの企画・制作を行います。予約機能やチャット機能など、お客様の事業に合わせた仕組みをご提案します。</p>
+      </div>
+      <div class="service-item fade">
+        <h3>AI活用サポート</h3>
+        <p>話題の生成AIを、実際のお仕事に活かす方法をご提案します。業務の効率化や新しいサービスづくりをお手伝いします。</p>
+      </div>
+      <div class="service-item fade">
+        <h3>技術顧問</h3>
+        <p>「自社に技術者がいない」「外注先の選び方が分からない」といったお悩みに、技術の目線から継続的にアドバイスいたします。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <div class="section-full achievements" id="works">
+    <div class="section-full-inner">
+      <div class="section" style="padding-left:0;padding-right:0">
+        <div class="section-en fade">ACHIEVEMENTS</div>
+        <div class="section-line fade"></div>
+        <h2 class="section-title fade">実績・受賞歴</h2>
+        <div class="ach-list">
+          <div class="ach-item fade">
+            <div class="ach-tag">2024</div>
+            <div>
+              <div class="ach-name">GCC 2024 Thailand ― Global Cybersecurity Camp 修了</div>
+              <div class="ach-sub">世界各国のセキュリティ人材が集う国際プログラム</div>
+            </div>
+          </div>
+          <div class="ach-item fade">
+            <div class="ach-tag">AWARD</div>
+            <div>
+              <div class="ach-name">はりま産学共創ビジネスコンテスト デザイン賞</div>
+            </div>
+          </div>
+          <div class="ach-item fade">
+            <div class="ach-tag">AWARD</div>
+            <div>
+              <div class="ach-name">岡山モノづくり★学生アイデア・デザインコンテスト 優秀賞</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Strengths -->
+  <section class="section">
+    <div class="section-en fade">STRENGTHS</div>
+    <div class="section-line fade"></div>
+    <h2 class="section-title fade">選ばれる理由</h2>
+    <div class="strengths-grid">
+      <div class="strength-item fade">
+        <div class="strength-num">01</div>
+        <h4>専門家の安心感</h4>
+        <p>AIとサイバーセキュリティの両分野で実績があり、攻めと守り両面からサポートできます。</p>
+      </div>
+      <div class="strength-item fade">
+        <div class="strength-num">02</div>
+        <h4>分かりやすい説明</h4>
+        <p>難しい技術の話も、お客様のビジネスに合わせて丁寧にお伝えします。専門用語は使いません。</p>
+      </div>
+      <div class="strength-item fade">
+        <div class="strength-num">03</div>
+        <h4>企画から運用まで</h4>
+        <p>ご相談から制作、その後の運用まで一貫して対応。窓口がひとつなので安心です。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Personal -->
+  <div class="section-full personal">
+    <div class="section-full-inner">
+      <div class="section" style="padding-left:0;padding-right:0">
+        <div class="section-en fade">PERSONAL</div>
+        <div class="section-line fade"></div>
+        <h2 class="section-title fade">もうひとつの顔</h2>
+        <div class="personal-inner">
+          <div class="personal-text fade">
+            趣味は空手と合気道。長年の武道経験を通じて培った礼儀と粘り強さは、仕事にも通じるものがあると思っています。<br><br>
+            最近は武道のコーチングにも取り組んでおり、教えることの楽しさにも目覚めました。<br><br>
+            技術も武道も、大事なのは「相手に合わせる」こと。<br>
+            お客様の目線に立った丁寧なサポートをお約束します。
+          </div>
+          <div class="personal-img fade">
+            <img src="laptop-blackbelt.png" alt="黒帯を巻いたノートPC ― 武道×テクノロジー" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="contact-inner">
+      <div class="section-en fade">CONTACT</div>
+      <div class="section-line fade" style="margin-left:auto;margin-right:auto"></div>
+      <h2 class="section-title fade">お問い合わせ</h2>
+      <p class="contact-desc fade">
+        「まだ具体的に決まっていないけれど、ちょっと相談したい」<br>
+        そんな段階でも大歓迎です。お気軽にご連絡ください。
+      </p>
+      <a href="mailto:ogasawarakei217@gmail.com" class="contact-email fade">メールで相談する</a>
+      <ul class="contact-links fade">
+        <li><a href="mailto:ogasawarakei217@gmail.com">ogasawarakei217@gmail.com</a></li>
+        <li><a href="https://github.com/koishichito" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2026 Keisuke Ogasawara
+  </footer>
+
+  <script>
+    // Header border on scroll
+    const h = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      h.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Fade in on scroll
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
