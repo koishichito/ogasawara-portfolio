@@ -65,6 +65,7 @@
       min-height:100vh;display:flex;align-items:center;
       padding:120px 32px 80px;
       max-width:var(--max-w);margin:0 auto;
+      position:relative;overflow:hidden;
     }
     .hero-inner{max-width:600px}
     .hero-en{
@@ -113,8 +114,53 @@
       width:32px;height:1px;background:var(--fg);margin-bottom:32px;
     }
 
+    /* ===== Hero Decoration ===== */
+    .hero-deco{
+      position:absolute;right:-40px;top:50%;transform:translateY(-50%);
+      width:480px;height:560px;
+      opacity:0;animation:heroDecoFadeIn 1.8s ease .4s forwards;
+    }
+    @keyframes heroDecoFadeIn{to{opacity:1}}
+    .pulse-ring{
+      transform-origin:center;
+      animation:pulse 4s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%,100%{transform:scale(1);opacity:.3}
+      50%{transform:scale(3);opacity:0}
+    }
+
+    /* ===== Section Dots ===== */
+    .section-dots{
+      display:flex;justify-content:center;
+      padding:0;margin:0 auto;position:relative;z-index:1;
+    }
+    .section-dots svg{width:320px;height:8px}
+
+    /* ===== Corner Mark ===== */
+    .strength-item{position:relative;padding-top:28px}
+    .corner-mark{
+      position:absolute;top:0;left:0;width:32px;height:32px;
+    }
+    .corner-mark path{
+      stroke-dasharray:16;stroke-dashoffset:16;
+      transition:stroke-dashoffset 1s ease .3s;
+    }
+    .fade.show .corner-mark path{stroke-dashoffset:0}
+
+    /* ===== Contact Decoration ===== */
+    #contact{position:relative;overflow:hidden}
+    .contact-deco{
+      position:absolute;inset:0;width:100%;height:100%;
+      pointer-events:none;opacity:.85;
+    }
+
     /* ===== Concept / About ===== */
-    .concept{background:var(--bg-alt)}
+    .concept{
+      background-color:var(--bg-alt);
+      background-image:radial-gradient(circle,#c0c0c0 .7px,transparent .7px);
+      background-size:20px 20px;
+    }
     .concept-text{
       font-size:.9rem;color:var(--fg);line-height:2.4;
       max-width:600px;
@@ -245,6 +291,7 @@
       .service-item{grid-template-columns:1fr;gap:8px}
       .ach-item{grid-template-columns:1fr;gap:4px}
       .strengths-grid{grid-template-columns:1fr;gap:32px}
+      .hero-deco{display:none}
       .personal-inner{grid-template-columns:1fr;gap:32px}
     }
     @media(max-width:480px){
@@ -281,7 +328,65 @@
       </p>
       <a href="#contact" class="hero-cta">お問い合わせはこちら &#8594;</a>
     </div>
+    <svg class="hero-deco" viewBox="0 0 400 500" fill="none" aria-hidden="true">
+      <!-- Main connections -->
+      <line x1="80" y1="60" x2="200" y2="150" stroke="#9ca3af" stroke-width=".8" opacity=".35"/>
+      <line x1="200" y1="150" x2="320" y2="100" stroke="#9ca3af" stroke-width=".8" opacity=".35"/>
+      <line x1="200" y1="150" x2="160" y2="290" stroke="#9ca3af" stroke-width=".8" opacity=".35"/>
+      <line x1="160" y1="290" x2="280" y2="340" stroke="#9ca3af" stroke-width=".8" opacity=".35"/>
+      <line x1="320" y1="100" x2="340" y2="240" stroke="#9ca3af" stroke-width=".8" opacity=".35"/>
+      <line x1="340" y1="240" x2="280" y2="340" stroke="#9ca3af" stroke-width=".8" opacity=".35"/>
+      <line x1="80" y1="60" x2="50" y2="200" stroke="#9ca3af" stroke-width=".6" opacity=".28"/>
+      <line x1="50" y1="200" x2="160" y2="290" stroke="#9ca3af" stroke-width=".6" opacity=".28"/>
+      <!-- Secondary connections -->
+      <line x1="200" y1="150" x2="260" y2="50" stroke="#9ca3af" stroke-width=".6" opacity=".22"/>
+      <line x1="280" y1="340" x2="240" y2="430" stroke="#9ca3af" stroke-width=".6" opacity=".22"/>
+      <line x1="320" y1="100" x2="380" y2="60" stroke="#9ca3af" stroke-width=".5" opacity=".18"/>
+      <line x1="50" y1="200" x2="20" y2="310" stroke="#9ca3af" stroke-width=".5" opacity=".18"/>
+      <line x1="340" y1="240" x2="380" y2="320" stroke="#9ca3af" stroke-width=".5" opacity=".18"/>
+      <line x1="160" y1="290" x2="80" y2="360" stroke="#9ca3af" stroke-width=".5" opacity=".18"/>
+      <!-- Cross connections -->
+      <line x1="80" y1="60" x2="200" y2="30" stroke="#9ca3af" stroke-width=".4" opacity=".15"/>
+      <line x1="200" y1="150" x2="340" y2="240" stroke="#9ca3af" stroke-width=".4" opacity=".12" stroke-dasharray="4 4"/>
+      <line x1="50" y1="200" x2="200" y2="150" stroke="#9ca3af" stroke-width=".4" opacity=".12" stroke-dasharray="4 4"/>
+      <!-- Primary nodes -->
+      <circle cx="200" cy="150" r="5.5" fill="#9ca3af" opacity=".55"/>
+      <circle cx="80" cy="60" r="4" fill="#9ca3af" opacity=".45"/>
+      <circle cx="320" cy="100" r="3.5" fill="#9ca3af" opacity=".4"/>
+      <circle cx="160" cy="290" r="4.5" fill="#9ca3af" opacity=".5"/>
+      <circle cx="280" cy="340" r="4" fill="#9ca3af" opacity=".45"/>
+      <circle cx="340" cy="240" r="3" fill="#9ca3af" opacity=".38"/>
+      <circle cx="50" cy="200" r="3" fill="#9ca3af" opacity=".32"/>
+      <!-- Secondary nodes -->
+      <circle cx="260" cy="50" r="2.5" fill="#9ca3af" opacity=".28"/>
+      <circle cx="240" cy="430" r="2.5" fill="#9ca3af" opacity=".25"/>
+      <circle cx="380" cy="60" r="2" fill="#9ca3af" opacity=".2"/>
+      <circle cx="20" cy="310" r="2" fill="#9ca3af" opacity=".2"/>
+      <circle cx="380" cy="320" r="1.5" fill="#9ca3af" opacity=".18"/>
+      <circle cx="80" cy="360" r="2" fill="#9ca3af" opacity=".2"/>
+      <circle cx="200" cy="30" r="1.5" fill="#9ca3af" opacity=".15"/>
+      <!-- Node rings (subtle halos) -->
+      <circle cx="200" cy="150" r="10" fill="none" stroke="#9ca3af" stroke-width=".4" opacity=".15"/>
+      <circle cx="280" cy="340" r="8" fill="none" stroke="#9ca3af" stroke-width=".3" opacity=".12"/>
+      <!-- Pulse rings -->
+      <circle cx="200" cy="150" r="5" fill="none" stroke="#9ca3af" stroke-width=".6" opacity=".35" class="pulse-ring"/>
+      <circle cx="160" cy="290" r="4" fill="none" stroke="#9ca3af" stroke-width=".4" opacity=".2" class="pulse-ring" style="animation-delay:2s"/>
+    </svg>
   </section>
+
+  <!-- Dots divider -->
+  <div class="section-dots" aria-hidden="true">
+    <svg viewBox="0 0 320 8" preserveAspectRatio="xMidYMid meet">
+      <circle cx="20" cy="4" r="1.5" fill="#9ca3af" opacity=".3"/>
+      <circle cx="60" cy="4" r="1" fill="#9ca3af" opacity=".22"/>
+      <circle cx="100" cy="4" r="2" fill="#9ca3af" opacity=".35"/>
+      <circle cx="140" cy="4" r="1" fill="#9ca3af" opacity=".22"/>
+      <circle cx="180" cy="4" r="2" fill="#9ca3af" opacity=".35"/>
+      <circle cx="220" cy="4" r="1" fill="#9ca3af" opacity=".22"/>
+      <circle cx="260" cy="4" r="1.5" fill="#9ca3af" opacity=".3"/>
+      <circle cx="300" cy="4" r="1" fill="#9ca3af" opacity=".2"/>
+    </svg>
+  </div>
 
   <!-- Concept -->
   <div class="section-full concept" id="about">
@@ -327,6 +432,20 @@
     </div>
   </section>
 
+  <!-- Dots divider -->
+  <div class="section-dots" aria-hidden="true">
+    <svg viewBox="0 0 320 8" preserveAspectRatio="xMidYMid meet">
+      <circle cx="20" cy="4" r="1.5" fill="#9ca3af" opacity=".3"/>
+      <circle cx="60" cy="4" r="1" fill="#9ca3af" opacity=".22"/>
+      <circle cx="100" cy="4" r="2" fill="#9ca3af" opacity=".35"/>
+      <circle cx="140" cy="4" r="1" fill="#9ca3af" opacity=".22"/>
+      <circle cx="180" cy="4" r="2" fill="#9ca3af" opacity=".35"/>
+      <circle cx="220" cy="4" r="1" fill="#9ca3af" opacity=".22"/>
+      <circle cx="260" cy="4" r="1.5" fill="#9ca3af" opacity=".3"/>
+      <circle cx="300" cy="4" r="1" fill="#9ca3af" opacity=".2"/>
+    </svg>
+  </div>
+
   <!-- Achievements -->
   <div class="section-full achievements" id="works">
     <div class="section-full-inner">
@@ -366,16 +485,19 @@
     <h2 class="section-title fade">選ばれる理由</h2>
     <div class="strengths-grid">
       <div class="strength-item fade">
+        <svg class="corner-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M0 12 L0 0 L12 0" stroke="#9ca3af" stroke-width="1" opacity=".45"/><circle cx="0" cy="0" r="2" fill="#9ca3af" opacity=".3"/></svg>
         <div class="strength-num">01</div>
         <h4>専門家の安心感</h4>
         <p>AIとサイバーセキュリティの両分野で実績があり、攻めと守り両面からサポートできます。</p>
       </div>
       <div class="strength-item fade">
+        <svg class="corner-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M0 12 L0 0 L12 0" stroke="#9ca3af" stroke-width="1" opacity=".45"/><circle cx="0" cy="0" r="2" fill="#9ca3af" opacity=".3"/></svg>
         <div class="strength-num">02</div>
         <h4>分かりやすい説明</h4>
         <p>難しい技術の話も、お客様のビジネスに合わせて丁寧にお伝えします。専門用語は使いません。</p>
       </div>
       <div class="strength-item fade">
+        <svg class="corner-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M0 12 L0 0 L12 0" stroke="#9ca3af" stroke-width="1" opacity=".45"/><circle cx="0" cy="0" r="2" fill="#9ca3af" opacity=".3"/></svg>
         <div class="strength-num">03</div>
         <h4>企画から運用まで</h4>
         <p>ご相談から制作、その後の運用まで一貫して対応。窓口がひとつなので安心です。</p>
@@ -407,6 +529,14 @@
 
   <!-- Contact -->
   <section class="section" id="contact">
+    <svg class="contact-deco" viewBox="0 0 920 400" preserveAspectRatio="none" aria-hidden="true">
+      <line x1="-40" y1="400" x2="360" y2="0" stroke="#d4d4d4" stroke-width="1.2"/>
+      <line x1="120" y1="400" x2="520" y2="0" stroke="#d4d4d4" stroke-width=".6"/>
+      <line x1="320" y1="400" x2="720" y2="0" stroke="#d4d4d4" stroke-width=".6"/>
+      <line x1="560" y1="400" x2="960" y2="0" stroke="#d4d4d4" stroke-width="1.2"/>
+      <circle cx="160" cy="200" r="1.5" fill="#d4d4d4" opacity=".5"/>
+      <circle cx="640" cy="200" r="1.5" fill="#d4d4d4" opacity=".5"/>
+    </svg>
     <div class="contact-inner">
       <div class="section-en fade">CONTACT</div>
       <div class="section-line fade" style="margin-left:auto;margin-right:auto"></div>
